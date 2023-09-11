@@ -9,14 +9,14 @@ SchoolLink todo web app for managing your Task and your daily activities.
 
 Here's some notes about my submission:
 
-1. A link to the project repository   https://github.com/The-CodeINN/schoolinkatodoproject
+1. A link to the project repository   [SchoolinkaTodo](https://github.com/The-CodeINN/todoapp-schoolinka.git)
 
-2. A publicly live hosted URL of the challenge  https://shooltodo.vercel.app/
+2. A publicly live hosted URL of the challenge  https://todoapp-schoolinka.vercel.app/
 
 Thank you very much.
 
-Best regards\
-Rasheed Olatunde || Richard Emijere
+Best regards
+Richard Emijere
 
 # Technologies 
 
@@ -35,10 +35,10 @@ Rasheed Olatunde || Richard Emijere
 # How to Contribute
 
 1. Clone the repository 
-$ git clone [https://github.com/The-CodeINN/schoolinkatodoproject](https://github.com/The-CodeINN/schoolinkatodoproject)
+$ git clone [https://github.com/The-CodeINN/todoapp-schoolinka.git](https://github.com/The-CodeINN/todoapp-schoolinka.git)
 
 2. Change directory into the cloned folder and run the setup script
-$ cd eazipay-app
+$ cd todoapp-schoolinka
 
 3. Open your terminal and type this command `yarn install ` or `npm install` to add the react dependency to the app in the development mode.
 
@@ -52,7 +52,7 @@ Vercel was used to deploy the app.
  + [Vercel](https://vercel.com/dashboard)
 
 # License
-The MIT License - Copyright (c) 2023 - Present, geodevcode|| TheCodeINN/  Storage Service.
+The MIT License - Copyright (c) 2023 - Present, TheCodeINN/  Storage Service.
 
 # Author
-Rasheed Olatunde (Frontend Developer) || Richard Emijere (Frontend Developer)
+Richard Emijere (Frontend Developer)
