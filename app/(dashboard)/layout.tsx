@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import { Navbar } from '@/components/Navbar';
+import { wait } from '@/lib/wait';
+import { Suspense } from 'react';
 
 const options = {
   title: 'ToDo App | Dashboard',
@@ -27,13 +29,19 @@ export const metadata: Metadata = {
   themeColor: '#ffffff',
 };
 
-const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashBoardLayout = async ({ children }: { children: React.ReactNode }) => {
+  await wait(8000);
+
   return (
     <div className='h-full relative '>
       <Navbar />
 
       <main className='md:px-16 px-6'>
-        <div className='max-w-6xl mx-auto'>{children}</div>
+        <div className='max-w-6xl mx-auto'>
+          <Suspense fallback={<div className='bg-red-900'>Loading...</div>}>
+            {children}
+          </Suspense>
+        </div>
       </main>
     </div>
   );

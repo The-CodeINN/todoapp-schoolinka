@@ -3,6 +3,7 @@ import { CiSettings } from 'react-icons/ci';
 import { BsBell } from 'react-icons/bs';
 import { UserMenu } from './UserMenu';
 import { MobileNav } from './Mobilenav';
+import { UserButton } from '@clerk/nextjs';
 
 export const Navbar = () => {
   return (
@@ -20,7 +21,7 @@ export const Navbar = () => {
               <BsBell className='h-6 w-6 text-gray-500' />
             </li>
             <li>
-              <UserMenu />
+              <UserButton afterSignOutUrl='/' />
             </li>
           </ul>
         </nav>

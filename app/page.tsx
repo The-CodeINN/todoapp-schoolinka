@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <section className='flex flex-col items-center justify center my-36'>
