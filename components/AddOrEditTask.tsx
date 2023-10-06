@@ -1,54 +1,54 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Calendar as CalendarIcon, X, Bell } from "lucide-react";
-import { format } from "date-fns";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { Calendar as CalendarIcon, X, Bell } from 'lucide-react';
+import { format } from 'date-fns';
 
-import { Card, CardHeader, CardTitle } from "./ui/card";
-import { Textarea } from "./ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Button } from "./ui/button";
-import { cn } from "@/lib/utils";
-import { Calendar } from "./ui/calendar";
-import { toast } from "./ui/use-toast";
-import { Input } from "./ui/input";
+import { Card, CardHeader, CardTitle } from './ui/card';
+import { Textarea } from './ui/textarea';
+import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
+import { Calendar } from './ui/calendar';
+import { toast } from './ui/use-toast';
+import { Input } from './ui/input';
 
 const addTaskSchema = z.object({
   description: z
     .string({
-      required_error: "Description is required",
+      required_error: 'Description is required',
     })
-    .min(10, { message: "Description must be at least 10 characters" }),
+    .min(10, { message: 'Description must be at least 10 characters' }),
   date: z.date({
-    required_error: "Date is required",
+    required_error: 'Date is required',
   }),
   start_time: z.string({
-    required_error: "Start Time is required",
+    required_error: 'Start Time is required',
   }),
   end_time: z.string({
-    required_error: "End time is required",
+    required_error: 'End time is required',
   }),
 });
 
 const defaultValues: Partial<TaskFormValues> = {
-  description: "Create wireframe",
+  description: 'Create wireframe',
   date: new Date(),
-  start_time: "10:00",
-  end_time: "11:00",
+  start_time: '10:00',
+  end_time: '11:00',
 };
 
 type TaskFormValues = z.infer<typeof addTaskSchema>;
 
 interface AddTaskProps {
   onClose?: () => void;
-  type?: "add" | "edit";
+  type?: 'add' | 'edit';
 }
 
 export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(addTaskSchema),
-    defaultValues: type === "edit" ? defaultValues : undefined,
+    defaultValues: type === 'edit' ? defaultValues : undefined,
   });
 
   const isLoading = form.formState.isSubmitting;
@@ -56,7 +56,7 @@ export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
 
   function onSubmit(data: TaskFormValues) {
     toast({
-      title: "You submitted the following values:",
+      title: 'You submitted the following values:',
       description: (
         <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
           <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
@@ -72,10 +72,10 @@ export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
   };
 
   return (
-    <Card className={cn("h-[380px]", hasFormError && "h-[420px]")}>
+    <Card className={cn('h-[380px]', hasFormError && 'h-[420px]')}>
       <CardHeader className='flex flex-row items-centers justify-between space-y-0 pb-4'>
         <CardTitle className='text-md font-semibold'>
-          {type === "add" ? "Add Task" : "Edit Task"}
+          {type === 'add' ? 'Add Task' : 'Edit Task'}
         </CardTitle>
         <X onClick={onClose} className='cursor-pointer' />
       </CardHeader>
@@ -113,13 +113,13 @@ export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
                             <Button
                               variant='outline'
                               className={cn(
-                                "space-x-1 p-2",
-                                !field.value && "text-muted-foreground"
+                                'space-x-1 p-2',
+                                !field.value && 'text-muted-foreground'
                               )}
                             >
                               <CalendarIcon className='w-4 h-4' />
                               {field.value ? (
-                                format(field.value, "PPP")
+                                format(field.value, 'PPP')
                               ) : (
                                 <span>Today</span>
                               )}
@@ -132,7 +132,9 @@ export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
                             selected={field.value}
                             onSelect={field.onChange}
                             disabled={(date) =>
-                              date > new Date() || date < new Date("1900-01-01")
+                              date.getTime() <
+                                new Date().setHours(0, 0, 0, 0) ||
+                              date > new Date('2100-01-02')
                             }
                             initialFocus
                           />
@@ -194,7 +196,7 @@ export const AddOrEditTask = ({ onClose, type }: AddTaskProps) => {
                 Cancel
               </Button>
               <Button disabled={isLoading} type='submit'>
-                {type === "add" ? "Add" : "Save"}
+                {type === 'add' ? 'Add' : 'Save'}
               </Button>
             </div>
           </form>
